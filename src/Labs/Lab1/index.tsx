@@ -275,7 +275,7 @@ non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</te
         <a href="https://www.lipsum.com" id="wd-lipsum">click here</a>
         {' '} to get dummy text<br/>
         <h4>Github link</h4>
-        Click {' '}<a href="https://github.com/zda58/cs5610-lab" id="wd-github">here</a>
+        Click {' '}<a href="https://github.com/zda58/kambaz-react-web-app" id="wd-github">here</a>
         {' '} to access the lab repository
       </div>
   );}
