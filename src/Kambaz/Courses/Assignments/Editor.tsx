@@ -16,7 +16,7 @@ export default function AssignmentEditor() {
               <label htmlFor="wd-points">Points</label>
             </td>
             <td>
-              <input id="wd-points" value={100} />
+              <input id="wd-points" defaultValue={100} />
             </td>
           </tr>
           <tr>
@@ -73,7 +73,7 @@ export default function AssignmentEditor() {
               <label htmlFor="wd-assign-to">Assign To</label>
             </td>
             <td>
-              <input id="wd-assign-to" value={'Everyone'} />
+              <input id="wd-assign-to" defaultValue={'Everyone'} />
             </td>
           </tr>
           <tr>
@@ -82,7 +82,7 @@ export default function AssignmentEditor() {
             </td>
             <td>
             <input type="date"
-            value="2000-01-21"
+            defaultValue="2000-01-21"
             id="wd-due-date"/><br/>
             </td>
           </tr>
@@ -92,7 +92,7 @@ export default function AssignmentEditor() {
             </td>
             <td>
             <input type="date"
-            value="2000-01-21"
+            defaultValue="2000-01-21"
             id="wd-available-from"/><br/>
             </td>
             <td align="center" valign="top">
@@ -100,7 +100,7 @@ export default function AssignmentEditor() {
             </td>
             <td>
             <input type="date"
-            value="2000-01-21"
+            defaultValue="2000-01-21"
             id="wd-available-until"/><br/>
             </td>
           </tr>
