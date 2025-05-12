@@ -195,7 +195,11 @@ non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</te
                 onClick={() => alert("Life is Good!")}
                 id="wd-all-good">
         Hello World!
-        </button>
+        </button> <br />
+
+        <label htmlFor="wd-file-button">File Upload</label><br />
+        <input type="file" id="wd-file-button" />
+
         <h5 id="wd-radio-buttons">Radio buttons</h5>
 
         <label>Favorite movie genre:</label><br />
