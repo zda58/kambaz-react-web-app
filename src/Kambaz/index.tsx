@@ -25,4 +25,5 @@ export default function Kambaz() {
         </tr>
       </table>
     </div>
-);}
+  );
+}

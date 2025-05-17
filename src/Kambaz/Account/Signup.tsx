@@ -3,11 +3,12 @@ export default function Signup() {
   return (
     <div id="wd-signup-screen">
       <h3>Sign up</h3>
-      <input placeholder="username" className="wd-username" defaultValue="admin" /><br/>
-      <input placeholder="password" type="password" className="wd-password" defaultValue="123" /><br/>
+      <input placeholder="username" className="wd-username" defaultValue="admin" /><br />
+      <input placeholder="password" type="password" className="wd-password" defaultValue="123" /><br />
       <input placeholder="verify password"
-             type="password" className="wd-password-verify" /><br/>
-      <Link  to="/Kambaz/Account/Profile" > Sign up </Link><br />
-      <Link  to="/Kambaz/Account/Signin" >Sign in</Link>
+        type="password" className="wd-password-verify" /><br />
+      <Link to="/Kambaz/Account/Profile" > Sign up </Link><br />
+      <Link to="/Kambaz/Account/Signin" >Sign in</Link>
     </div>
-);}
+  );
+}
