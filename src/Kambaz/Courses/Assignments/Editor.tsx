@@ -1,4 +1,4 @@
-import { Col, Form, Row } from "react-bootstrap";
+import { Button, Col, Form, Row } from "react-bootstrap";
 
 export default function AssignmentEditor() {
   return (
@@ -57,95 +57,77 @@ export default function AssignmentEditor() {
           </Col>
         </Row>
 
-        <Row className="mb-3 align-items-center">
+        <Row className="mb-3">
           <Col xs={4} className="text-end pe-2">
-            <Form.Label htmlFor="wd-submission-type" className="mb-0">Submission type</Form.Label>
+            <Form.Label htmlFor="wd-submission-type" className="mb-0 mt-3">Submission Type</Form.Label>
           </Col>
           <Col xs={8} md={6} className="border pb-2 pt-2">
             <Form.Group controlId="wd-submission-type" className="mb-0">
-              <Form.Select defaultValue="ONLINE">
+              <Form.Select defaultValue="ONLINE" className="mb-2">
                 <option value="ONLINE">Online</option>
+                <option value="PERSON">In Person</option>
               </Form.Select>
-              
+              <Form.Label className="fw-bold">Online Entry Options</Form.Label>
+              <Form.Check defaultChecked={false} id="wd-text-entry"
+                label="Text Entry" />
+              <Form.Check defaultChecked={false} id="wd-website-url"
+                label="Website URL" />
+              <Form.Check defaultChecked={false} id="wd-media-recordings"
+                label="Media Recordings" />
+              <Form.Check defaultChecked={false} id="wd-student-annotations"
+                label="Student annotations" />
+              <Form.Check defaultChecked={false} id="wd-file-uploads"
+                label="File Uploads" />
             </Form.Group>
           </Col>
         </Row>
 
-        <table>
-          <tr>
-            <td align="center" valign="top">
-              <label htmlFor="wd-submission-type">Submission Type</label>
-            </td>
-            <td>
-              <select defaultValue="ONLINE" id="wd-submission-type">
-                <option value="ONLINE">Online</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td align="left" valign="top" style={{ paddingLeft: '0px' }}>
-              Online Entry Options<br />
-              <input type="checkbox" name="check-genre" id="wd-text-entry" />
-              <label htmlFor="wd-text-entry">Text Entry</label><br />
+        <Row className="mb-3">
+          <Col xs={4} className="text-end pe-2">
+            <Form.Label htmlFor="wd-assign-to" className="mb-0 mt-3">Assign</Form.Label>
+          </Col>
+          <Col xs={8} md={6} className="border pb-2 pt-2">
+            <Form.Group controlId="wd-assign-to" className="mb-3">
+              <Form.Label className="fw-bold">Assign to</Form.Label>
+              <Form.Control as="select" multiple>
+                <option value="SEC1">Section 1</option>
+                <option value="SEC2">Section 2</option>
+                <option value="SEC3">Section 3</option>
+              </Form.Control>
+            </Form.Group>
 
-              <input type="checkbox" name="check-genre" id="wd-website-url" />
-              <label htmlFor="wd-website-url">Website URL</label><br />
-
-              <input type="checkbox" name="check-genre" id="wd-media-recordings" />
-              <label htmlFor="wd-media-recordings">Media Recordings</label><br />
-
-              <input type="checkbox" name="check-genre" id="wd-student-annotation" />
-              <label htmlFor="wd-student-annotation">Student Annotation</label><br />
-
-              <input type="checkbox" name="check-genre" id="wd-file-upload" />
-              <label htmlFor="wd-file-upload">File Uploads</label>
-            </td>
-          </tr>
-          <tr>
-            <td align="center" valign="top">
-              <label htmlFor="wd-assign-to">Assign To</label>
-            </td>
-            <td>
-              <input id="wd-assign-to" defaultValue={'Everyone'} />
-            </td>
-          </tr>
-          <tr>
-            <td align="center" valign="top">
-              <label htmlFor="wd-due-date">Due Date</label>
-            </td>
-            <td>
-              <input type="date"
-                defaultValue="2000-01-21"
-                id="wd-due-date" /><br />
-            </td>
-          </tr>
-          <tr>
-            <td align="center" valign="top">
-              <label htmlFor="wd-available-from">Available From</label>
-            </td>
-            <td>
-              <input type="date"
-                defaultValue="2000-01-21"
-                id="wd-available-from" /><br />
-            </td>
-            <td align="center" valign="top">
-              <label htmlFor="wd-available-until">Until</label>
-            </td>
-            <td>
-              <input type="date"
-                defaultValue="2000-01-21"
-                id="wd-available-until" /><br />
-            </td>
-          </tr>
-          <tr>
-            <td align="right" valign="top">
-              <button type="button"
-                id="wd-cancel"> Cancel</button>
-              <button type="button"
-                id="wd-save"> Save</button>
-            </td>
-          </tr>
-        </table>
+            <Form.Group controlId="wd-due-date" className="mb-0">
+              <Form.Label className="fw-bold">Due</Form.Label>
+              <Form.Control type="date" />
+            </Form.Group>
+            <Row>
+              <Col xs={6}>
+                <Form.Group controlId="wd-available-from" className="mb-0">
+                  <Form.Label className="fw-bold">Available from</Form.Label>
+                  <Form.Control type="date" />
+                </Form.Group>
+              </Col>
+              <Col xs={6}>
+                <Form.Group controlId="wd-available-until" className="mb-0">
+                  <Form.Label className="fw-bold">Until</Form.Label>
+                  <Form.Control type="date" />
+                </Form.Group>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+        <Row className="mb-3">
+          <Col xs={4}>
+          </Col>
+          <Col xs={8} md={6} className="text-end">
+            <Button variant="secondary" size="lg" className="me-2" id="wd-cancel">
+              Cancel
+            </Button>
+            <Button variant="danger" size="lg" id="wd-save">
+              Save
+            </Button>
+          </Col>
+        </Row>
       </Form>
     </div>
   );
