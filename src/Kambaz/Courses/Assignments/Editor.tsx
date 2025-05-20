@@ -116,6 +116,7 @@ export default function AssignmentEditor() {
             </Row>
           </Col>
         </Row>
+        <hr/>
         <Row className="mb-3">
           <Col xs={4}>
           </Col>
