@@ -1,5 +1,6 @@
 import Add from "./Add";
 import AddingAndRemovingToFromArrays from "./AddingAndRemovingToFromArrays";
+import AddPathParameters from "./AddPathParameters";
 import ArrayIndexAndLength from "./ArrayIndexAndLength";
 import ArrowFunctions from "./ArrowFunctions";
 import BooleanVariables from "./BooleanVariables";
@@ -20,6 +21,7 @@ import ImpliedReturn from "./ImpliedReturn";
 import JsonStringify from "./JsonStringify";
 import LegacyFunctions from "./LegacyFunctions";
 import MapFunction from "./MapFunction";
+import PathParameters from "./PathParameters";
 import SimpleArrays from "./SimpleArrays";
 import Spreading from "./Spreading";
 import Square from "./Square";
@@ -32,6 +34,7 @@ import VariablesAndConstants from "./VariablesAndConstants";
 import VariableTypes from "./VariableTypes";
 
 export default function Lab3() {
+  console.log('Hello World!');
   return (
     <div id="wd-lab3">
       <h2>Lab 3</h2>
@@ -72,6 +75,8 @@ export default function Lab3() {
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipitratione eaque illo minus cum, saepe totam
         vel nihil repellat nemo explicabo excepturi consectetur. Modi omnis minus sequi maiores, provident voluptates.
       </Highlight>
+      <PathParameters />
+      <AddPathParameters />
     </div>
   );
 }
