@@ -1,6 +1,8 @@
 import { Button, Col, Form, Row } from "react-bootstrap";
+import { Link, useParams } from "react-router-dom";
 
 export default function AssignmentEditor() {
+  const { cid, aid } = useParams();
   return (
     <div id="wd-assignments-editor">
       <Form>
@@ -110,23 +112,21 @@ export default function AssignmentEditor() {
               <Col xs={6}>
                 <Form.Group controlId="wd-available-until" className="mb-0">
                   <Form.Label className="fw-bold">Until</Form.Label>
-                  <Form.Control type="date" />
+                  <Form.Control type="date" defaultValue=""/>
                 </Form.Group>
               </Col>
             </Row>
           </Col>
         </Row>
-        <hr/>
+        <hr />
         <Row className="mb-3">
           <Col xs={4}>
           </Col>
           <Col xs={8} md={6} className="text-end">
-            <Button variant="secondary" size="lg" className="me-2" id="wd-cancel">
-              Cancel
-            </Button>
-            <Button variant="danger" size="lg" id="wd-save">
-              Save
-            </Button>
+            <Link to={`/Kambaz/Courses/${cid}/Assignments/`} id={`wd-cancel`}
+              className="btn btn-secondary btn-lg me-2">Cancel</Link>
+            <Link to={`/Kambaz/Courses/${cid}/Assignments/`} id={`wd-cancel`}
+              className="btn btn-danger btn-lg me-2">Save</Link>
           </Col>
         </Row>
       </Form>
