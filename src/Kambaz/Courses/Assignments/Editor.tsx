@@ -1,8 +1,8 @@
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Col, Form, Row } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 
 export default function AssignmentEditor() {
-  const { cid, aid } = useParams();
+  const { cid } = useParams();
   return (
     <div id="wd-assignments-editor">
       <Form>
