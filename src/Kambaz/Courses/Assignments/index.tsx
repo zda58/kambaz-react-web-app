@@ -24,7 +24,6 @@ const formatDate = (date: Date) => {
 export default function Assignments() {
   const { cid } = useParams();
   const assignments = db.assignments;
-  const currentTime = new Date();
   return (
     <div id="wd-assignments">
       <AssignmentsControl />
@@ -37,7 +36,6 @@ export default function Assignments() {
             {assignments.filter((assignment: any) => assignment.course === cid).map((assignment: any) => {
               const fromDate = new Date(assignment.from);
               const dueDate = new Date(assignment.due);
-              const untilDate = new Date(assignment.until);
               return (
                 <ListGroup.Item className="wd-lesson d-flex justify-content-between align-items-center p-3 ps-1">
                   <div className="d-flex align-items-center">
