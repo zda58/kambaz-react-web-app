@@ -1,11 +1,14 @@
 import { ListGroup, Nav } from "react-bootstrap";
-import { BsGripVertical } from "react-icons/bs";
+import { BsGripVertical, BsPlus } from "react-icons/bs";
 import LessonControlButtons from "../Modules/LessonControlButtons";
 import ModuleControlButtons from "../Modules/ModuleControlButtons";
 import { LuNotebookText } from "react-icons/lu";
 import AssignmentsControl from "./AssignmentsControl";
 import * as db from "../../Database"
 import { useParams } from "react-router";
+import { FaTrash } from "react-icons/fa";
+import { IoEllipsisVertical } from "react-icons/io5";
+import GreenCheckmark from "../Modules/GreenCheckmark";
 
 const formatDate = (date: Date) => {
 
@@ -30,7 +33,12 @@ export default function Assignments() {
       <ListGroup className="rounded-0" id="wd-modules">
         <ListGroup.Item className="wd-module p-0 mb-5 sf-5 border-gray">
           <div className="wd-title p-3 ps-2 bg-secondary">
-            <BsGripVertical className="me-2 fs-3" />ASSIGNMENTS<ModuleControlButtons />
+            <BsGripVertical className="me-2 fs-3" />ASSIGNMENTS
+            <div className="float-end">
+              <GreenCheckmark />
+              <BsPlus />
+              <IoEllipsisVertical className="fs-4" />
+            </div>
           </div>
           <ListGroup className="wd-lessons rounded-0">
             {assignments.filter((assignment: any) => assignment.course === cid).map((assignment: any) => {
