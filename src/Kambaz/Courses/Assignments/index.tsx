@@ -1,12 +1,8 @@
 import { ListGroup, Nav } from "react-bootstrap";
 import { BsGripVertical, BsPlus } from "react-icons/bs";
-import LessonControlButtons from "../Modules/LessonControlButtons";
-import ModuleControlButtons from "../Modules/ModuleControlButtons";
 import { LuNotebookText } from "react-icons/lu";
 import AssignmentsControl from "./AssignmentsControl";
-import * as db from "../../Database"
 import { useParams } from "react-router";
-import { FaTrash } from "react-icons/fa";
 import { IoEllipsisVertical } from "react-icons/io5";
 import GreenCheckmark from "../Modules/GreenCheckmark";
 import AssignmentControlButtons from "./AssignmentControlButtons";

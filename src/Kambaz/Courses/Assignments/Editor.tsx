@@ -1,10 +1,8 @@
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import * as db from "../../Database"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { addAssignment, updateAssignment } from "./reducer";
-import { BsDisplay } from "react-icons/bs";
 
 const formatLocalDateTime = (date: string): string => {
   try {
