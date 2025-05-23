@@ -22,17 +22,17 @@ export default function Profile() {
     <div id="wd-profile-screen">
       {profile && (
         <div>
-          <FormControl value={profile.username} id="wd-username" className="mb-2"
+          <FormControl placeholder="username" value={profile.username} id="wd-username" className="mb-2"
             onChange={(e) => setProfile({ ...profile, username: e.target.value })} />
-          <FormControl value={profile.password} id="wd-password" className="mb-2"
+          <FormControl placeholder="password" value={profile.password} id="wd-password" className="mb-2"
             onChange={(e) => setProfile({ ...profile, password: e.target.value })} />
-          <FormControl value={profile.firstName} id="wd-firstname" className="mb-2"
+          <FormControl placeholder="first name" value={profile.firstName} id="wd-firstname" className="mb-2"
             onChange={(e) => setProfile({ ...profile, firstName: e.target.value })} />
-          <FormControl value={profile.lastName} id="wd-lastname" className="mb-2"
+          <FormControl placeholder="last name" value={profile.lastName} id="wd-lastname" className="mb-2"
             onChange={(e) => setProfile({ ...profile, lastName: e.target.value })} />
           <FormControl value={profile.dob} id="wd-dob" className="mb-2"
             onChange={(e) => setProfile({ ...profile, dob: e.target.value })} type="date" />
-          <FormControl value={profile.email} id="wd-email" className="mb-2"
+          <FormControl placeholder="email" value={profile.email} id="wd-email" className="mb-2"
             onChange={(e) => setProfile({ ...profile, email: e.target.value })} />
           <select value={profile.role} onChange={(e) => setProfile({ ...profile, role: e.target.value })}
             className="form-control mb-2" id="wd-role">
