@@ -8,8 +8,14 @@
     "group": "ASSIGNMENTS",
     "display": "PERCENTAGE",
     "submissionType": "ONLINE",
-    "entryOptions": ["TEXT_ENTRY", "FILE_UPLOADS"],
-    "assignTo": ["SEC1", "SEC2"],
+    "entryOptions": [
+      "TEXT_ENTRY",
+      "FILE_UPLOADS"
+    ],
+    "assignTo": [
+      "SEC1",
+      "SEC2"
+    ],
     "due": "2025-05-20T23:59:00-05:00",
     "from": "2025-05-20T00:00:00-05:00",
     "until": "2025-05-20T23:59:00-05:00"
@@ -23,8 +29,15 @@
     "group": "ASSIGNMENTS",
     "display": "PERCENTAGE",
     "submissionType": "ONLINE",
-    "entryOptions": ["TEXT_ENTRY", "FILE_UPLOADS", "WEBSITE_URL"],
-    "assignTo": ["SEC1", "SEC2"],
+    "entryOptions": [
+      "TEXT_ENTRY",
+      "FILE_UPLOADS",
+      "WEBSITE_URL"
+    ],
+    "assignTo": [
+      "SEC1",
+      "SEC2"
+    ],
     "due": "2025-05-20T23:59:00-05:00",
     "from": "2025-05-20T00:00:00-05:00",
     "until": "2025-05-20T23:59:00-05:00"
@@ -38,8 +51,14 @@
     "group": "ASSIGNMENTS",
     "display": "PERCENTAGE",
     "submissionType": "ONLINE",
-    "entryOptions": ["TEXT_ENTRY", "FILE_UPLOADS"],
-    "assignTo": ["SEC1", "SEC2"],
+    "entryOptions": [
+      "TEXT_ENTRY",
+      "FILE_UPLOADS"
+    ],
+    "assignTo": [
+      "SEC1",
+      "SEC2"
+    ],
     "due": "2025-05-20T23:59:00-05:00",
     "from": "2025-05-20T00:00:00-05:00",
     "until": "2025-05-20T23:59:00-05:00"
@@ -53,8 +72,14 @@
     "group": "ASSIGNMENTS",
     "display": "PERCENTAGE",
     "submissionType": "ONLINE",
-    "entryOptions": ["TEXT_ENTRY", "FILE_UPLOADS"],
-    "assignTo": ["SEC1", "SEC2"],
+    "entryOptions": [
+      "TEXT_ENTRY",
+      "FILE_UPLOADS"
+    ],
+    "assignTo": [
+      "SEC1",
+      "SEC2"
+    ],
     "due": "2025-05-20T23:59:00-05:00",
     "from": "2025-05-20T00:00:00-05:00",
     "until": "2025-05-20T23:59:00-05:00"
@@ -68,8 +93,15 @@
     "group": "ASSIGNMENTS",
     "display": "PERCENTAGE",
     "submissionType": "ONLINE",
-    "entryOptions": ["TEXT_ENTRY", "FILE_UPLOADS", "MEDIA_RECORDINGS"],
-    "assignTo": ["SEC1", "SEC2"],
+    "entryOptions": [
+      "TEXT_ENTRY",
+      "FILE_UPLOADS",
+      "MEDIA_RECORDINGS"
+    ],
+    "assignTo": [
+      "SEC1",
+      "SEC2"
+    ],
     "due": "2025-05-20T23:59:00-05:00",
     "from": "2025-05-20T00:00:00-05:00",
     "until": "2025-05-20T23:59:00-05:00"
@@ -83,8 +115,14 @@
     "group": "ASSIGNMENTS",
     "display": "PERCENTAGE",
     "submissionType": "ONLINE",
-    "entryOptions": ["TEXT_ENTRY", "FILE_UPLOADS"],
-    "assignTo": ["SEC1", "SEC2"],
+    "entryOptions": [
+      "TEXT_ENTRY",
+      "FILE_UPLOADS"
+    ],
+    "assignTo": [
+      "SEC1",
+      "SEC2"
+    ],
     "due": "2025-05-20T23:59:00-05:00",
     "from": "2025-05-20T00:00:00-05:00",
     "until": "2025-05-20T23:59:00-05:00"
@@ -98,8 +136,14 @@
     "group": "ASSIGNMENTS",
     "display": "PERCENTAGE",
     "submissionType": "ONLINE",
-    "entryOptions": ["TEXT_ENTRY", "FILE_UPLOADS"],
-    "assignTo": ["SEC1", "SEC2"],
+    "entryOptions": [
+      "TEXT_ENTRY",
+      "FILE_UPLOADS"
+    ],
+    "assignTo": [
+      "SEC1",
+      "SEC2"
+    ],
     "due": "2025-05-20T23:59:00-05:00",
     "from": "2025-05-20T00:00:00-05:00",
     "until": "2025-05-20T23:59:00-05:00"
@@ -113,8 +157,14 @@
     "group": "ASSIGNMENTS",
     "display": "PERCENTAGE",
     "submissionType": "ONLINE",
-    "entryOptions": ["TEXT_ENTRY", "FILE_UPLOADS"],
-    "assignTo": ["SEC1", "SEC2"],
+    "entryOptions": [
+      "TEXT_ENTRY",
+      "FILE_UPLOADS"
+    ],
+    "assignTo": [
+      "SEC1",
+      "SEC2"
+    ],
     "due": "2025-05-20T23:59:00-05:00",
     "from": "2025-05-20T00:00:00-05:00",
     "until": "2025-05-20T23:59:00-05:00"
@@ -128,8 +178,14 @@
     "group": "ASSIGNMENTS",
     "display": "PERCENTAGE",
     "submissionType": "ONLINE",
-    "entryOptions": ["TEXT_ENTRY", "FILE_UPLOADS"],
-    "assignTo": ["SEC1", "SEC2"],
+    "entryOptions": [
+      "TEXT_ENTRY",
+      "FILE_UPLOADS"
+    ],
+    "assignTo": [
+      "SEC1",
+      "SEC2"
+    ],
     "due": "2025-05-20T23:59:00-05:00",
     "from": "2025-05-20T00:00:00-05:00",
     "until": "2025-05-20T23:59:00-05:00"
