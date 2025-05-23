@@ -9,8 +9,9 @@ export default function Signin() {
   const [credentials, setCredentials] = useState<any>({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { users } = db;
   const signin = () => {
-    const user = db.users.find(
+    const user = users.find(
       (u: any) => u.username === credentials.username && u.password === credentials.password);
     if (!user) return;
     dispatch(setCurrentUser(user));
@@ -25,7 +26,7 @@ export default function Signin() {
       <Form.Control defaultValue={credentials.password}
         onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
         id="wd-password" placeholder="password" type="password" className="mb-2" />
-      <Button onClick={signin} id="wd-signin-btn" className="w-100" > Sign fin </Button>
+      <Button onClick={signin} id="wd-signin-btn" className="w-100" > Sign in </Button>
       <Link id="wd-signup-link" to="/Kambaz/Account/Signup">Sign up</Link>
     </div>
   );

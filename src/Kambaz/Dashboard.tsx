@@ -1,25 +1,31 @@
 import { Button, Card, Col, Form, Row } from "react-bootstrap";
 import { Link } from "react-router"
-import { useSelector } from "react-redux";
-import * as db from "./Database";
+import { useDispatch, useSelector } from "react-redux";
+import { RoleRoute } from "./Account/ProtectedRoute";
+import { useState } from "react";
+import { addCourse, deleteCourse, updateCourse } from "./Courses/reducer";
+import { addEnrollment, deleteEnrollment } from "./Courses/Enrollments/reducer";
 
-export default function Dashboard({ courses, course, setCourse, addNewCourse,
-  deleteCourse, updateCourse }: {
-    courses: any[]; course: any; setCourse: (course: any) => void;
-    addNewCourse: () => void; deleteCourse: (course: any) => void;
-    updateCourse: () => void;
-  }) {
+export default function Dashboard() {
+  const [course, setCourse] = useState<any>({
+      _id: "1234", name: "New Course", number: "New Number",
+      startDate: "2023-09-10", endDate: "2023-12-15", description: "New Description",
+    });
   const { currentUser } = useSelector((state: any) => state.accountReducer);
-  const { enrollments } = db;
+  const { courses } = useSelector((state: any) => state.coursesReducer);
+  const { enrollments } = useSelector((state: any) => state.enrollmentsReducer);
+  const [ showAll, setShowAll ] = useState(false);
+  const dispatch = useDispatch();
   return (
     <div id="wd-dashboard">
       <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
+      <RoleRoute roles={["FACULTY"]}>
       <h5>New Course
         <button className="btn btn-primary float-end"
           id="wd-add-new-course-click"
-          onClick={addNewCourse} > Add </button>
+          onClick={() => dispatch(addCourse(course))} > Add </button>
         <button className="btn btn-warning float-end me-2"
-          onClick={updateCourse} id="wd-update-course-click">
+          onClick={() => dispatch(updateCourse(course))} id="wd-update-course-click">
           Update
         </button>
       </h5><br />
@@ -28,34 +34,55 @@ export default function Dashboard({ courses, course, setCourse, addNewCourse,
         onChange={(e) => setCourse({ ...course, name: e.target.value })} />
       <Form.Control as="textarea" value={course.description} rows={3}
         onChange={(e) => setCourse({ ...course, description: e.target.value })} />
-
       <hr />
-      <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2> <hr />
+      </RoleRoute>
+      <div className="d-flex justify-content-between">
+      <h2 id="wd-dashboard-published">Published Courses ({courses.filter((course: any) =>
+            enrollments.some(
+              (enrollment: any) =>
+                enrollment.user === currentUser._id &&
+                enrollment.course === course._id
+            )).length})
+            </h2>
+        <button className="btn btn-primary float-end me-2"
+          onClick={() => setShowAll(!showAll)} id="wd-update-enrollment-click">
+          Enrollments
+        </button>
+        </div>
+            <hr />
       <div id="wd-dashboard-courses">
         <Row xs={1} md={5} className="g-4">
-          {courses.filter((course) =>
-            enrollments.some(
-              (enrollment) =>
+          {courses.filter((course: any) =>
+            showAll || enrollments.some(
+              (enrollment: any) =>
                 enrollment.user === currentUser._id &&
                 enrollment.course === course._id
             ))
-            .map((course) => (
-              <Col className="wd-dashboard-course" style={{ width: "300px" }}>
+            .map((course: any) => {
+              const enrollment = enrollments.find(
+                (enrollment: any) =>
+                  enrollment.user === currentUser._id &&
+                  enrollment.course === course._id
+              );
+              return (
+              <Col className="wd-dashboard-course" style={{ width: "350px" }}>
                 <Card>
-                  <Link to={`/Kambaz/Courses/${course._id}/Home`}
+                  <Link to={enrollment ? `/Kambaz/Courses/${course._id}/Home` : ''}
                     className="wd-dashboard-course-link text-decoration-none text-dark" >
-                    <Card.Img src="/vite.svg" variant="top" width="100%" height={160} />
+                    <Card.Img src={
+                      course.image ? course.image : "/vite.svg"
+                    } variant="top" width="100%" height={160} />
                     <Card.Body className="card-body">
                       <Card.Title className="wd-dashboard-course-title text-nowrap overflow-hidden">
                         {course.name} </Card.Title>
                       <Card.Text className="wd-dashboard-course-description overflow-hidden" style={{ height: "100px" }}>
                         {course.description} </Card.Text>
-                      <Button variant="primary"> Go </Button>
+                      <Button variant={enrollment ? "primary" : "secondary"}> Go </Button>
 
-
+                      <RoleRoute roles={["FACULTY"]}>
                       <button onClick={(event) => {
                         event.preventDefault();
-                        deleteCourse(course._id);
+                        dispatch(deleteCourse(course._id));
                       }} className="btn btn-danger float-end"
                         id="wd-delete-course-click">
                         Delete
@@ -68,11 +95,24 @@ export default function Dashboard({ courses, course, setCourse, addNewCourse,
                         className="btn btn-warning me-2 float-end" >
                         Edit
                       </button>
+                      </RoleRoute>
+                      <button id="wd-toggle-enrollment-click"
+                        onClick={(event) => {
+                          event.preventDefault();
+                          if (enrollment) {
+                            dispatch(deleteEnrollment(enrollment._id));
+                          } else {
+                            dispatch(addEnrollment({user: currentUser._id, course: course._id}))
+                          }
+                        }}
+                        className={`btn ${enrollment ? 'btn-danger' : 'btn-success'} me-2 float-end`} >
+                        {enrollment ? 'Unenroll' : 'Enroll'}
+                      </button> 
                     </Card.Body>
                   </Link>
                 </Card>
               </Col>
-            ))}
+            )})}
         </Row>
       </div>
     </div>
