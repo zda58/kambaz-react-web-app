@@ -3,6 +3,7 @@ import GreenCheckmark from "./GreenCheckmark";
 import { Button, Dropdown } from "react-bootstrap";
 import ModuleEditor from "./ModuleEditor";
 import { useState } from "react";
+import { RoleRoute } from "../../Account/ProtectedRoute";
 
 
 export default function ModulesControls({ moduleName, setModuleName, addModule }:
@@ -12,6 +13,7 @@ export default function ModulesControls({ moduleName, setModuleName, addModule }
    const handleShow = () => setShow(true);
   return (
     <div id="wd-modules-controls" className="text-nowrap" style={{ minWidth: "620px" }}>
+      <RoleRoute roles={["FACULTY"]}><></>
       <Button variant="danger" size="lg" className="me-1 float-end" id="wd-add-module-btn" onClick={handleShow}>
         <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
         Module
@@ -35,6 +37,7 @@ export default function ModulesControls({ moduleName, setModuleName, addModule }
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
+      </RoleRoute>
       <Button variant="secondary" size="lg" className="me-1 float-end" id="wd-view-progress">
         View Progress
       </Button>

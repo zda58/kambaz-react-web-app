@@ -1,14 +1,13 @@
 import { ListGroup, Nav } from "react-bootstrap";
 import { BsGripVertical, BsPlus } from "react-icons/bs";
-import LessonControlButtons from "../Modules/LessonControlButtons";
-import ModuleControlButtons from "../Modules/ModuleControlButtons";
 import { LuNotebookText } from "react-icons/lu";
 import AssignmentsControl from "./AssignmentsControl";
-import * as db from "../../Database"
 import { useParams } from "react-router";
-import { FaTrash } from "react-icons/fa";
 import { IoEllipsisVertical } from "react-icons/io5";
 import GreenCheckmark from "../Modules/GreenCheckmark";
+import AssignmentControlButtons from "./AssignmentControlButtons";
+import { deleteAssignment } from "./reducer";
+import { useDispatch, useSelector } from "react-redux";
 
 const formatDate = (date: Date) => {
 
@@ -26,7 +25,9 @@ const formatDate = (date: Date) => {
 
 export default function Assignments() {
   const { cid } = useParams();
-  const assignments = db.assignments;
+  const dispatch = useDispatch();
+  const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
   return (
     <div id="wd-assignments">
       <AssignmentsControl />
@@ -44,14 +45,16 @@ export default function Assignments() {
             {assignments.filter((assignment: any) => assignment.course === cid).map((assignment: any) => {
               const fromDate = new Date(assignment.from);
               const dueDate = new Date(assignment.due);
+
               return (
                 <ListGroup.Item className="wd-lesson d-flex justify-content-between align-items-center p-3 ps-1">
                   <div className="d-flex align-items-center">
                     <BsGripVertical className="me-2 fs-3" />
                     <LuNotebookText color="green" className="me-2 fs-3" />
                     <div>
-                      <Nav.Link href={`#/Kambaz/Courses/${cid}/Assignments/${assignment._id}`}
-                        className="wd-assignment-link fw-bold">{assignment._id}</Nav.Link>
+                      <Nav.Link href={currentUser.role == "FACULTY" ?
+                        `#/Kambaz/Courses/${cid}/Assignments/${assignment._id}`: ``}
+                        className="wd-assignment-link fw-bold">{assignment.title}</Nav.Link>
                       <span className="text-danger">Multiple Modules </span> |
                       <span className="fw-bold"> Not available until {formatDate(fromDate)} </span> |
                       <br />
@@ -59,7 +62,9 @@ export default function Assignments() {
                     </div>
                   </div>
                   <div>
-                    <LessonControlButtons />
+                    <AssignmentControlButtons assignmentId={assignment._id} deleteAssignment={(assignmentId) => {
+                      dispatch(deleteAssignment(assignmentId))
+                    }} />
                   </div>
                 </ListGroup.Item>
               );
