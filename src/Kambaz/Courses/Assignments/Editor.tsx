@@ -103,7 +103,7 @@ export default function AssignmentEditor() {
           <Col xs={8} md={6}>
             <Form.Group controlId="wd-display-grade-as" className="mb-0">
               <Form.Select value={assignment.display || "PERCENTAGE"}
-              onChange={(e) => setAssignment({ ...assignment, display: e.target.value })}>
+                onChange={(e) => setAssignment({ ...assignment, display: e.target.value })}>
                 <option value="PERCENTAGE">Percentage</option>
                 <option value="EE">ee</option>
               </Form.Select>
@@ -207,24 +207,24 @@ export default function AssignmentEditor() {
                 <Form.Group controlId="wd-available-from" className="mb-0">
                   <Form.Label className="fw-bold">Available from</Form.Label>
                   <Form.Control type="datetime-local" value={formatLocalDateTime(assignment.from)}
-                  onChange={(e) => {
-                    const newDate = new Date(e.target.value);
-                    const dateString = newDate.toISOString().split('.')[0] + "+00:00";
-                    console.log(assignment.from, dateString)
-                    setAssignment({ ...assignment, from: dateString });
-                  }}/>
+                    onChange={(e) => {
+                      const newDate = new Date(e.target.value);
+                      const dateString = newDate.toISOString().split('.')[0] + "+00:00";
+                      console.log(assignment.from, dateString)
+                      setAssignment({ ...assignment, from: dateString });
+                    }} />
                 </Form.Group>
               </Col>
               <Col xs={6}>
                 <Form.Group controlId="wd-available-until" className="mb-0">
                   <Form.Label className="fw-bold">Until</Form.Label>
                   <Form.Control type="datetime-local" value={formatLocalDateTime(assignment.until)}
-                  onChange={(e) => {
-                    const newDate = new Date(e.target.value);
-                    const dateString = newDate.toISOString().split('.')[0] + "+00:00";
-                    console.log(assignment.until, dateString)
-                    setAssignment({ ...assignment, until: dateString });
-                  }}/>
+                    onChange={(e) => {
+                      const newDate = new Date(e.target.value);
+                      const dateString = newDate.toISOString().split('.')[0] + "+00:00";
+                      console.log(assignment.until, dateString)
+                      setAssignment({ ...assignment, until: dateString });
+                    }} />
                 </Form.Group>
               </Col>
             </Row>

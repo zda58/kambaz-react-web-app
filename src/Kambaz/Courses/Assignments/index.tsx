@@ -10,7 +10,6 @@ import { deleteAssignment } from "./reducer";
 import { useDispatch, useSelector } from "react-redux";
 
 const formatDate = (date: Date) => {
-
   const month = date.toLocaleString('default', { month: 'long' });
   const day = date.getDate();
 
@@ -53,12 +52,14 @@ export default function Assignments() {
                     <LuNotebookText color="green" className="me-2 fs-3" />
                     <div>
                       <Nav.Link href={currentUser.role == "FACULTY" ?
-                        `#/Kambaz/Courses/${cid}/Assignments/${assignment._id}`: ``}
+                        `#/Kambaz/Courses/${cid}/Assignments/${assignment._id}` : ``}
                         className="wd-assignment-link fw-bold">{assignment.title}</Nav.Link>
-                      <span className="text-danger">Multiple Modules </span> |
-                      <span className="fw-bold"> Not available until {formatDate(fromDate)} </span> |
+                      <span className="text-danger">Multiple Modules</span>
+                      {!isNaN(fromDate.getTime()) && (
+                        <> | <span className="fw-bold"> Not available until {formatDate(fromDate)} </span></>)}
                       <br />
-                      <span className="fw-bold"> Due </span> {formatDate(dueDate)} | {assignment.points}pts
+                      {!isNaN(dueDate.getTime()) && (<><span className="fw-bold"> Due </span> {formatDate(dueDate)} | </>)}
+                      {assignment.points}pts
                     </div>
                   </div>
                   <div>

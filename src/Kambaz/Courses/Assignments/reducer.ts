@@ -11,16 +11,18 @@ const assignmentsSlice = createSlice({
     addAssignment: (state, { payload: assignment }) => {
       const newAssignment: any = {
         _id: uuidv4(),
-        title: assignment.title,
-        course: assignment.course,
-        description: assignment.description,
-        points: assignment.points,
-        group: assignment.group,
-        submissionType: assignment.submissionType,
-        assignTo: assignment.assignTo,
-        due: assignment.due,
-        from: assignment.from,
-        until: assignment.until,
+        title: assignment.title || "",
+        course: assignment.course || "",
+        description: assignment.description || "",
+        points: assignment.points || 0,
+        group: assignment.group || "",
+        display: assignment.display || "",
+        submissionType: assignment.submissionType || "",
+        entryOptions: assignment.entryOptions || [],
+        assignTo: assignment.assignTo || [],
+        due: assignment.due || "",
+        from: assignment.from || "",
+        until: assignment.until || "",
       };
       state.assignments = [...state.assignments, newAssignment] as any;
     },
@@ -37,5 +39,5 @@ const assignmentsSlice = createSlice({
 });
 
 export const { addAssignment, deleteAssignment, updateAssignment } =
-assignmentsSlice.actions;
+  assignmentsSlice.actions;
 export default assignmentsSlice.reducer;

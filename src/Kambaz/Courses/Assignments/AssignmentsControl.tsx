@@ -15,17 +15,17 @@ export default function AssignmentsControl() {
         <Form.Control id="wd-search-assignment" placeholder="Search..." />
       </InputGroup>
       <RoleRoute roles={["FACULTY"]}>
-      <span>
-        <Link className="btn btn-danger btn-lg me-1 float-end" id="wd-add-module-btn"
-         to={`/Kambaz/Courses/${cid}/Assignments/new`}>
-          <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
-          Assignment
-        </Link>
-        <Button variant="secondary" size="lg" className="me-1 float-end" id="wd-add-module-btn">
-          <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
-          Group
-        </Button>
-      </span>
+        <span>
+          <Link className="btn btn-danger btn-lg me-1 float-end" id="wd-add-module-btn"
+            to={`/Kambaz/Courses/${cid}/Assignments/new`}>
+            <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
+            Assignment
+          </Link>
+          <Button variant="secondary" size="lg" className="me-1 float-end" id="wd-add-module-btn">
+            <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
+            Group
+          </Button>
+        </span>
       </RoleRoute>
     </div>
   );

@@ -11,9 +11,10 @@ const modulesSlice = createSlice({
     addModule: (state, { payload: module }) => {
       const newModule: any = {
         _id: uuidv4(),
-        lessons: [],
-        name: module.name,
-        course: module.course,
+        name: module.name || "",
+        description: module.description || "",
+        course: module.course || "",
+        lessons: module.lessons || [],
       };
       state.modules = [...state.modules, newModule] as any;
     },
