@@ -7,10 +7,26 @@ import AssignmentEditor from "./Assignments/Editor";
 import PeopleTable from "./People/Table";
 import { FaAlignJustify } from "react-icons/fa6";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import * as userClient from "../Account/client";
+
 
 export default function Courses() {
   const { cid } = useParams();
-  const { courses } = useSelector((state: any) => state.coursesReducer);
+  const [courses, setCourses] = useState<any[]>([]);
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const fetchCourses = async () => {
+    try {
+      const courses = await userClient.findMyCourses();
+      setCourses(courses);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    fetchCourses();
+  }, [currentUser]);
+
   const course = courses.find((course: any) => course._id === cid);
   const { pathname } = useLocation();
   return (

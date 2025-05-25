@@ -3,6 +3,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { addAssignment, updateAssignment } from "./reducer";
+import * as coursesClient from "../client";
+import * as assignmentsClient from "./client";
 
 const formatLocalDateTime = (date: string): string => {
   try {
@@ -40,16 +42,19 @@ export default function AssignmentEditor() {
 
   const dispatch = useDispatch();
   const navigator = useNavigate();
-  const saveNewAssignment = () => {
+
+  const saveNewAssignment = async () => {
+    if (!cid) return;
     assignment.course = cid;
-    dispatch(addAssignment(assignment));
-    console.log("saving new")
+    const createdAssignment = await coursesClient.createAssignmentForCourse(cid, assignment);
+    dispatch(addAssignment(createdAssignment));
     navigator(`/Kambaz/Courses/${cid}/Assignments`);
   };
 
-  const updateCurAssignment = () => {
-    dispatch(updateAssignment(assignment));
-    console.log("updating")
+  const updateCurAssignment = async () => {
+    const updatedAssignment =
+      await assignmentsClient.updateAssignment(assignment);
+    dispatch(updateAssignment(updatedAssignment));
     navigator(`/Kambaz/Courses/${cid}/Assignments`);
   }
 

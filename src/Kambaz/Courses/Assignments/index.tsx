@@ -6,8 +6,11 @@ import { useParams } from "react-router";
 import { IoEllipsisVertical } from "react-icons/io5";
 import GreenCheckmark from "../Modules/GreenCheckmark";
 import AssignmentControlButtons from "./AssignmentControlButtons";
-import { deleteAssignment } from "./reducer";
+import { deleteAssignment, setAssignments } from "./reducer";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import * as coursesClient from "../client";
+import * as assignmentsClient from "./client"
 
 const formatDate = (date: Date) => {
   const month = date.toLocaleString('default', { month: 'long' });
@@ -27,6 +30,28 @@ export default function Assignments() {
   const dispatch = useDispatch();
   const { assignments } = useSelector((state: any) => state.assignmentsReducer);
   const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const fetchAssignments = async () => {
+    try {
+      if (!cid) return;
+      const assignments = await coursesClient.findAssignmentsForCourse(cid);
+      dispatch(setAssignments(assignments));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    fetchAssignments();
+  }, [currentUser]);
+
+  const deleteRemoteAssignment = async (assignmentId: string) => {
+    try {
+      await assignmentsClient.deleteAssignment(assignmentId);
+      dispatch(deleteAssignment(assignmentId));
+      fetchAssignments();
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <div id="wd-assignments">
       <AssignmentsControl />
@@ -64,7 +89,7 @@ export default function Assignments() {
                   </div>
                   <div>
                     <AssignmentControlButtons assignmentId={assignment._id} deleteAssignment={(assignmentId) => {
-                      dispatch(deleteAssignment(assignmentId))
+                      deleteRemoteAssignment(assignmentId)
                     }} />
                   </div>
                 </ListGroup.Item>
