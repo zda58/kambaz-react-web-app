@@ -9,11 +9,13 @@ import { FaAlignJustify } from "react-icons/fa6";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import * as userClient from "../Account/client";
+import * as coursesClient from "./client"
 
 
 export default function Courses() {
   const { cid } = useParams();
   const [courses, setCourses] = useState<any[]>([]);
+  const [users, setUsers] = useState<any[]>([]);
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const fetchCourses = async () => {
     try {
@@ -23,8 +25,18 @@ export default function Courses() {
       console.error(error);
     }
   };
+  const fetchUsers = async () => {
+    try {
+      if (!cid) return;
+      const courseUsers = await coursesClient.findUsersForCourse(cid);
+      setUsers(courseUsers);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   useEffect(() => {
     fetchCourses();
+    fetchUsers();
   }, [currentUser]);
 
   const course = courses.find((course: any) => course._id === cid);
@@ -47,7 +59,7 @@ export default function Courses() {
             <Route path="Assignments/:aid" element={<AssignmentEditor />} />
             <Route path="Quizzes" element={<h2>Quizzes</h2>} />
             <Route path="Grades" element={<h2>Grades</h2>} />
-            <Route path="People" element={<PeopleTable />} />
+            <Route path="People" element={<PeopleTable users={users} />} />
           </Routes>
         </div></div>
     </div>

@@ -16,32 +16,38 @@ export default function Modules() {
   const [moduleName, setModuleName] = useState("");
   const { modules } = useSelector((state: any) => state.modulesReducer);
   const dispatch = useDispatch();
+
   const fetchModules = async () => {
     const modules = await coursesClient.findModulesForCourse(cid as string);
     dispatch(setModules(modules));
   };
-  const createModuleForCourse = async () => {
-    if (!cid) return;
-    const newModule = { name: moduleName, course: cid };
-    const module = await coursesClient.createModuleForCourse(cid, newModule);
-    dispatch(addModule(module));
-  };
-  const removeModule = async (moduleId: string) => {
+
+  const removeModuleHandler = async (moduleId: string) => {
     await modulesClient.deleteModule(moduleId);
     dispatch(deleteModule(moduleId));
   };
-  const saveModule = async (module: any) => {
+
+  const updateModuleHandler = async (module: any) => {
     await modulesClient.updateModule(module);
     dispatch(updateModule(module));
   };
 
+  const addModuleHandler = async () => {
+    const newModule = await coursesClient.createModuleForCourse(cid!, {
+      name: moduleName,
+      course: cid,
+    });
+    dispatch(addModule(newModule));
+    setModuleName("");
+  };
+
   useEffect(() => {
     fetchModules();
-  }, []);
+  }, [cid]);
 
   return (
     <div>
-      <ModulesControls setModuleName={setModuleName} moduleName={moduleName} addModule={createModuleForCourse} />
+      <ModulesControls setModuleName={setModuleName} moduleName={moduleName} addModule={addModuleHandler} />
       <br /><br /><br /><br />
       <ListGroup className="rounded-0" id="wd-modules">
         {modules
@@ -54,13 +60,13 @@ export default function Modules() {
                     onChange={(e) => dispatch(updateModule({ ...module, name: e.target.value }))}
                     onKeyDown={(e) => {
                       if (e.key === "Enter") {
-                        saveModule({ ...module, editing: false });
+                        updateModuleHandler({ ...module, editing: false });
                       }
                     }}
                     defaultValue={module.name} />
                 )}
                 <ModuleControlButtons moduleId={module._id}
-                  deleteModule={(moduleId) => removeModule(moduleId)} editModule={(moduleId) => dispatch(editModule(moduleId))} />
+                  deleteModule={(moduleId) => removeModuleHandler(moduleId)} editModule={(moduleId) => dispatch(editModule(moduleId))} />
               </div>
               {module.lessons && (
                 <ListGroup className="wd-lessons rounded-0">

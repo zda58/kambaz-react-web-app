@@ -38,6 +38,9 @@ export default function PeopleDetails() {
 
   useEffect(() => {
     if (uid) fetchUser();
+    setName(`${user.firstName} ${user.lastName}`);
+    setEmail(user.email);
+    setRole(user.role);
   }, [uid]);
   if (!uid) return null;
   return (
@@ -58,7 +61,7 @@ export default function PeopleDetails() {
             {user.firstName} {user.lastName}</div>)}
         {user && editing && (
           <FormControl className="w-50 wd-edit-name"
-            value={`${user.firstName} ${user.lastName}`}
+            value={name}
             onChange={(e) => setName(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === "Enter") { saveUser(); }}}/>)}
@@ -70,7 +73,7 @@ export default function PeopleDetails() {
             {user.email}</span>)}
         {user && editing && (
           <FormControl type="email" className="w-50 wd-edit-email"
-            value={`${user.email}`}
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === "Enter") { saveUser(); }}}/>)}  
@@ -81,7 +84,7 @@ export default function PeopleDetails() {
                onClick={() => setEditing(true)}>
             {user.role}</span>)}
         {user && editing && (
-          <select value={user.role}
+          <select value={role}
             onChange={(e) => setRole(e.target.value)}
             className="wd-edit-role form-control mb-2">
             <option value="ADMIN">Admin</option>
