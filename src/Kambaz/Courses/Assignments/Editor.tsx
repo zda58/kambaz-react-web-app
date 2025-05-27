@@ -41,12 +41,20 @@ export default function AssignmentEditor() {
   const dispatch = useDispatch();
   const navigator = useNavigate();
   const saveNewAssignment = () => {
+    if (!assignment.title) {
+      alert("Assignment should have a title");
+      return;
+    }
     assignment.course = cid;
     dispatch(addAssignment(assignment));
     navigator(`/Kambaz/Courses/${cid}/Assignments`);
   };
 
   const updateCurAssignment = () => {
+    if (!assignment.title) {
+      alert("Assignment should have a title");
+      return;
+    }
     dispatch(updateAssignment(assignment));
     navigator(`/Kambaz/Courses/${cid}/Assignments`);
   }
