@@ -203,7 +203,6 @@ export default function AssignmentEditor() {
                 onChange={(e) => {
                   const newDate = new Date(e.target.value);
                   const dateString = newDate.toISOString().split('.')[0] + "+00:00";
-                  console.log(assignment.due, dateString)
                   setAssignment({ ...assignment, due: dateString });
                 }} />
             </Form.Group>
@@ -215,7 +214,6 @@ export default function AssignmentEditor() {
                     onChange={(e) => {
                       const newDate = new Date(e.target.value);
                       const dateString = newDate.toISOString().split('.')[0] + "+00:00";
-                      console.log(assignment.from, dateString)
                       setAssignment({ ...assignment, from: dateString });
                     }} />
                 </Form.Group>
@@ -227,7 +225,6 @@ export default function AssignmentEditor() {
                     onChange={(e) => {
                       const newDate = new Date(e.target.value);
                       const dateString = newDate.toISOString().split('.')[0] + "+00:00";
-                      console.log(assignment.until, dateString)
                       setAssignment({ ...assignment, until: dateString });
                     }} />
                 </Form.Group>

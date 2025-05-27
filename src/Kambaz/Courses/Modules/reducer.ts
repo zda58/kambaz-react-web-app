@@ -1,6 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-//import { modules } from "../../Database";
-import { v4 as uuidv4 } from "uuid";
 const initialState = {
   modules: [],
 };
@@ -12,14 +10,7 @@ const modulesSlice = createSlice({
       state.modules = action.payload;
     },
     addModule: (state, { payload: module }) => {
-      const newModule: any = {
-        _id: uuidv4(),
-        name: module.name || "",
-        description: module.description || "",
-        course: module.course || "",
-        lessons: module.lessons || [],
-      };
-      state.modules = [...state.modules, newModule] as any;
+      state.modules = [...state.modules, module] as any;
     },
     deleteModule: (state, { payload: moduleId }) => {
       state.modules = state.modules.filter(

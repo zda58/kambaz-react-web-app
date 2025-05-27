@@ -3,10 +3,8 @@ import { Link } from "react-router"
 import { useDispatch, useSelector } from "react-redux";
 import { RoleRoute } from "./Account/ProtectedRoute";
 import { useEffect, useState } from "react";
-//import { addEnrollment, deleteEnrollment } from "./Courses/Enrollments/reducer";
 import * as userClient from "./Account/client";
 import * as courseClient from "./Courses/client";
-import * as enrollmentClient from "./Courses/Enrollments/client"
 import { setCourses } from "./Courses/reducer";
 
 export default function Dashboard() {
@@ -24,8 +22,6 @@ export default function Dashboard() {
       const newCourses = showAll ? await courseClient.fetchAllCourses()
         : await userClient.findMyCourses();
       dispatch(setCourses(newCourses));
-      console.log(showAll, newCourses.length)
-      console.log(newCourses)
     } catch (error) {
       console.error(error);
     }
@@ -48,6 +44,9 @@ export default function Dashboard() {
   useEffect(() => {
     fetchCourses();
   }, [showAll]);
+  useEffect(() => {
+    fetchEnrollments();
+  }, [courses])
   const addNewCourse = async () => {
     const newCourse = await userClient.createCourse(course);
     dispatch(setCourses([...courses, newCourse]));
@@ -64,13 +63,13 @@ export default function Dashboard() {
     })));
   };
 
-  const deleteEnrollment = async (enrollmentId: string) => {
-    await enrollmentClient.deleteEnrollment(enrollmentId);
+  const deleteEnrollmentHandler = async (enrollmentId: string) => {
+    await userClient.unenrollFromCourse(currentUser._id, enrollmentId);
     setEnrollments(enrollments.filter((enrollment) => enrollment._id !== enrollmentId));
   };
 
-  const addEnrollment = async (courseId: string) => {
-    const newEnrollment = await userClient.enrollInCourse(courseId);
+  const addEnrollmentHandler = async (courseId: string) => {
+    const newEnrollment = await userClient.enrollIntoCourse(currentUser._id, courseId);
     setEnrollments([...enrollments, newEnrollment])
   };
 
@@ -157,9 +156,9 @@ export default function Dashboard() {
                           onClick={(event) => {
                             event.preventDefault();
                             if (enrollment) {
-                              deleteEnrollment(enrollment._id);
+                              deleteEnrollmentHandler(enrollment._id);
                             } else {
-                              addEnrollment(course._id);
+                              addEnrollmentHandler(course._id);
                             }
                           }}
                           className={`btn ${enrollment ? 'btn-danger' : 'btn-success'} me-2 float-end`} >
