@@ -159,7 +159,7 @@ export default function Dashboard() {
                           event.preventDefault();
                           updateEnrollment(course._id, !course.enrolled);
                         }}
-                        className={`btn ${ course.enrolled ? 'btn-danger' : 'btn-success'} me-2 float-end`} disabled={currentUser.role == "ADMIN"}>
+                        className={`btn ${course.enrolled ? 'btn-danger' : 'btn-success'} me-2 float-end`} disabled={currentUser.role == "ADMIN"}>
                         {course.enrolled ? 'Unenroll' : 'Enroll'}
                       </button>
                     </Card.Body>
