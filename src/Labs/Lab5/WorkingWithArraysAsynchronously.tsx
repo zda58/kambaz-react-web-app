@@ -69,7 +69,11 @@ export default function WorkingWithArraysAsynchronously() {
             <FaPencil onClick={() => editTodo(todo)} className="text-primary float-end me-2 mt-1" />
             <input type="checkbox" className="form-check-input me-2"
               defaultChecked={todo.completed} onChange={(e) => updateTodo({ ...todo, completed: e.target.checked })} />
-            {!todo.editing ? (todo.title) : (
+            {!todo.editing ? (
+              <span style={{ textDecoration: todo.completed ? "line-through" : "none" }}>
+              {todo.title}
+            </span>
+            ) : (
               <FormControl className="w-50 float-start" defaultValue={todo.title}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
@@ -80,9 +84,6 @@ export default function WorkingWithArraysAsynchronously() {
                   updateTodo({ ...todo, title: e.target.value })
                 }
               />)}
-            <span style={{ textDecoration: todo.completed ? "line-through" : "none" }}>
-              {todo.title}
-            </span>
           </ListGroup.Item>
         ))}
       </ListGroup> <hr />

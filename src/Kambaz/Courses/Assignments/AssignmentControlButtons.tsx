@@ -17,7 +17,7 @@ export default function AssignmentControlButtons({ assignmentId, deleteAssignmen
       </RoleRoute>
       <GreenCheckmark />
       <IoEllipsisVertical className="fs-4" />
-      <AssignmentDeleter show={show} handleClose={handleClose} dialogTitle="delete assignment"
+      <AssignmentDeleter show={show} handleClose={handleClose} dialogTitle="Delete assignment"
              assignmentId={assignmentId} deleteAssignment={deleteAssignment} />
     </div>
   );
