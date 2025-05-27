@@ -152,18 +152,20 @@ export default function Dashboard() {
                             Edit
                           </button>
                         </RoleRoute>
-                        <button id="wd-toggle-enrollment-click"
-                          onClick={(event) => {
-                            event.preventDefault();
-                            if (enrollment) {
-                              deleteEnrollmentHandler(course._id);
-                            } else {
-                              addEnrollmentHandler(course._id);
-                            }
-                          }}
-                          className={`btn ${enrollment ? 'btn-danger' : 'btn-success'} me-2 float-end`} >
-                          {enrollment ? 'Unenroll' : 'Enroll'}
-                        </button>
+                        {showAll &&
+                          (<button id="wd-toggle-enrollment-click"
+                            onClick={(event) => {
+                              event.preventDefault();
+                              if (enrollment) {
+                                deleteEnrollmentHandler(course._id);
+                              } else {
+                                addEnrollmentHandler(course._id);
+                              }
+                            }}
+                            className={`btn ${enrollment ? 'btn-danger' : 'btn-success'} me-2 float-end`} >
+                            {enrollment ? 'Unenroll' : 'Enroll'}
+                          </button>)
+                        }
                       </Card.Body>
                     </Link>
                   </Card>
