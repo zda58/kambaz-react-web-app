@@ -14,11 +14,14 @@ export default function WorkingWithObjects() {
     course: "web",
   });
   const ASSIGNMENT_API_URL = `${REMOTE_SERVER}/lab5/assignment`
+  const MODULE_API_URL = `${REMOTE_SERVER}/lab5/module`
   console.log(assignment)
   return (
     <div id="wd-working-with-objects">
       <h3>Working With Objects</h3>
       <h4>Modifying Properties</h4>
+      <hr />
+      <h2>Assignment operations</h2>
       <a id="wd-update-assignment-title"
          className="btn btn-primary float-end"
          href={`${ASSIGNMENT_API_URL}/title/${assignment.title}`}>
@@ -60,11 +63,10 @@ export default function WorkingWithObjects() {
         checked={assignment.completed} onChange={(e) => 
           setAssignment({ ...assignment, completed: (e.target.checked)})}/>
       <hr />
-
-      
+      <h2>Module operations</h2>
       <a id="wd-update-module-name"
          className="btn btn-primary float-end"
-         href={`${ASSIGNMENT_API_URL}/module/${module.name}`}>
+         href={`${MODULE_API_URL}/name/${module.name}`}>
         Update Module Name
       </a>
       <FormControl className="w-75" id="wd-module-name"
@@ -72,11 +74,11 @@ export default function WorkingWithObjects() {
           setModule({ ...module, name: e.target.value })}/>
       <hr />
       <a id="wd-retrieve-modules" className="btn btn-primary"
-        href={`${REMOTE_SERVER}/lab5/module`}>
+        href={`${MODULE_API_URL}`}>
         Get Module
       </a><hr />
       <a id="wd-retrieve-module-name" className="btn btn-primary"
-         href={`${REMOTE_SERVER}/lab5/module/name`}>
+         href={`${MODULE_API_URL}/name`}>
         Get Module Name
       </a><hr/>
     </div>
