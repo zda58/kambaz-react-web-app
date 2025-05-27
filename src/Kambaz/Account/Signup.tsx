@@ -9,7 +9,14 @@ export default function Signup() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const signup = async () => {
-    const currentUser = await client.signup(user);
+    if (!user.username || !user.password) {
+      alert("Username and password must be provided");
+      return;
+    }
+    const signUpUser = { ...user,
+      firstName:user.firstName || user.username,
+      lastName: user.lastName || "User" };
+    const currentUser = await client.signup(signUpUser);
     dispatch(setCurrentUser(currentUser));
     navigate("/Kambaz/Account/Profile");
   };
