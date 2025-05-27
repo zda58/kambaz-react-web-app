@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 export default function TodoList() {
   const { todos } = useSelector((state: any) => state.todosReducer);
   return (
-    <div id="wd-todo-list-redux">
+    <div id="wd-todo-list-redux" style={{ width: "400px" }}>
       <h2>Todo List</h2>
       <ListGroup>
       <TodoForm />
