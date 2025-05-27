@@ -8,7 +8,7 @@ export default function AccountNavigation() {
   return (
     <div id="wd-courses-navigation" className="wd list-group fs-5 rounded-0 d-none d-lg-block">
       {links.map((link) => (
-        <Link to={`/Kambaz/Account/${link}`} className={`list-group-item ${pathname.includes(link) ? "active" : "text-danger"} border border-0`}> {link} </Link>
+        <Link key={link} to={`/Kambaz/Account/${link}`} className={`list-group-item ${pathname.includes(link) ? "active" : "text-danger"} border border-0`}> {link} </Link>
       ))}
     </div>
   );
