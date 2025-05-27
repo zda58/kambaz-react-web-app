@@ -123,7 +123,9 @@ export default function AssignmentEditor() {
           <Col xs={8} md={6} className="border pb-2 pt-2">
             <Form.Group controlId="wd-submission-type" className="mb-0">
               <Form.Select value={assignment.submissionType || "ONLINE"} className="mb-2"
-              >
+              onChange={(e) => {
+                  setAssignment({ ...assignment, submissionType: e.target.value });
+                }}>
                 <option value="ONLINE">Online</option>
                 <option value="PERSON">In Person</option>
               </Form.Select>
