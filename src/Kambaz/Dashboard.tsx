@@ -65,7 +65,7 @@ export default function Dashboard() {
 
   const deleteEnrollmentHandler = async (courseId: string) => {
     await userClient.unenrollFromCourse(currentUser._id, courseId);
-    setEnrollments(enrollments.filter((enrollment) => enrollment._id !== courseId));
+    setEnrollments(enrollments.filter((enrollment) => enrollment.course !== courseId || enrollment.user != currentUser._id));
   };
 
   const addEnrollmentHandler = async (courseId: string) => {
