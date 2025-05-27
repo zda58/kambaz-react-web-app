@@ -63,9 +63,9 @@ export default function Dashboard() {
     })));
   };
 
-  const deleteEnrollmentHandler = async (enrollmentId: string) => {
-    await userClient.unenrollFromCourse(currentUser._id, enrollmentId);
-    setEnrollments(enrollments.filter((enrollment) => enrollment._id !== enrollmentId));
+  const deleteEnrollmentHandler = async (courseId: string) => {
+    await userClient.unenrollFromCourse(currentUser._id, courseId);
+    setEnrollments(enrollments.filter((enrollment) => enrollment._id !== courseId));
   };
 
   const addEnrollmentHandler = async (courseId: string) => {
@@ -156,7 +156,7 @@ export default function Dashboard() {
                           onClick={(event) => {
                             event.preventDefault();
                             if (enrollment) {
-                              deleteEnrollmentHandler(enrollment._id);
+                              deleteEnrollmentHandler(course._id);
                             } else {
                               addEnrollmentHandler(course._id);
                             }
