@@ -20,7 +20,7 @@ export default function Dashboard() {
 
   const addCourseHandler = () => {
     const newId = uuidv4();
-    dispatch(addCourse({ ...course, _id: newId } ));
+    dispatch(addCourse({ ...course, _id: newId }));
     dispatch(addEnrollment({ user: currentUser._id, course: newId }))
   }
 
@@ -104,18 +104,20 @@ export default function Dashboard() {
                             Edit
                           </button>
                         </RoleRoute>
-                        <button id="wd-toggle-enrollment-click"
-                          onClick={(event) => {
-                            event.preventDefault();
-                            if (enrollment) {
-                              dispatch(deleteEnrollment(enrollment._id));
-                            } else {
-                              dispatch(addEnrollment({ user: currentUser._id, course: course._id }))
-                            }
-                          }}
-                          className={`btn ${enrollment ? 'btn-danger' : 'btn-success'} me-2 float-end`} >
-                          {enrollment ? 'Unenroll' : 'Enroll'}
-                        </button>
+                        {showAll &&
+                          (<button id="wd-toggle-enrollment-click"
+                            onClick={(event) => {
+                              event.preventDefault();
+                              if (enrollment) {
+                                dispatch(deleteEnrollment(enrollment._id));
+                              } else {
+                                dispatch(addEnrollment({ user: currentUser._id, course: course._id }))
+                              }
+                            }}
+                            className={`btn ${enrollment ? 'btn-danger' : 'btn-success'} me-2 float-end`} >
+                            {enrollment ? 'Unenroll' : 'Enroll'}
+                          </button>)
+                        }
                       </Card.Body>
                     </Link>
                   </Card>
