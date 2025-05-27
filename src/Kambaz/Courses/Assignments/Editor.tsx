@@ -27,15 +27,28 @@ const formatLocalDateTime = (date: string): string => {
 export default function AssignmentEditor() {
   const { cid, aid } = useParams();
   const { assignments } = useSelector((state: any) => state.assignmentsReducer);
-  const found = assignments.find((assignment: any) => assignment._id === aid);
-  const newAssignment = !found;
 
-  const [assignment, setAssignment] = useState(newAssignment ? {} : found);
+  const defaultAssignment = {
+    title: "New Assignment",
+    course: cid,
+    description: "Description",
+    points: 0,
+    group: "ASSIGNMENTS",
+    display: "PERCENTAGE",
+    submissionType: "ONLINE",
+    entryOptions: [],
+    assignTo: [],
+  } as any;
+
+  const [assignment, setAssignment] = useState(defaultAssignment);
+
+  const isNewAssignment = !(assignments.find((assignment: any) => assignment._id === aid));
 
   useEffect(() => {
     const foundAssignment = assignments.find((assignment: any) => assignment._id === aid);
-    const isNewAssignment = !foundAssignment;
-    setAssignment(isNewAssignment ? {} : foundAssignment);
+    if (foundAssignment) {
+      setAssignment(foundAssignment);
+    }
   }, [aid, assignments]);
 
   const dispatch = useDispatch();
@@ -244,7 +257,7 @@ export default function AssignmentEditor() {
               className="btn btn-secondary btn-lg me-2">Cancel</Link>
             <Button id={`wd-cancel`}
               className="btn btn-danger btn-lg me-2"
-              onClick={newAssignment ? saveNewAssignment : updateCurAssignment}>Save</Button>
+              onClick={isNewAssignment ? saveNewAssignment : updateCurAssignment}>Save</Button>
           </Col>
         </Row>
       </Form>
