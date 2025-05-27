@@ -10,7 +10,7 @@ const coursesSlice = createSlice({
   reducers: {
     addCourse: (state, { payload: course }) => {
       const newCourse: any = {
-        _id: uuidv4(),
+        _id: course._id || uuidv4(),
         name: course.name || "",
         number: course.number || "",
         image: course.image || "vite.svg",

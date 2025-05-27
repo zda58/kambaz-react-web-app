@@ -5,10 +5,11 @@ import { RoleRoute } from "./Account/ProtectedRoute";
 import { useState } from "react";
 import { addCourse, deleteCourse, updateCourse } from "./Courses/reducer";
 import { addEnrollment, deleteEnrollment } from "./Courses/Enrollments/reducer";
+import { v4 as uuidv4 } from "uuid";
 
 export default function Dashboard() {
   const [course, setCourse] = useState<any>({
-    _id: "1234", name: "New Course", number: "New Number",
+    name: "New Course", number: "New Number",
     startDate: "2023-09-10", endDate: "2023-12-15", description: "New Description",
   });
   const { currentUser } = useSelector((state: any) => state.accountReducer);
@@ -16,6 +17,13 @@ export default function Dashboard() {
   const { enrollments } = useSelector((state: any) => state.enrollmentsReducer);
   const [showAll, setShowAll] = useState(false);
   const dispatch = useDispatch();
+
+  const addCourseHandler = () => {
+    const newId = uuidv4();
+    dispatch(addCourse({ ...course, _id: newId } ));
+    dispatch(addEnrollment({ user: currentUser._id, course: newId }))
+  }
+
   return (
     <div id="wd-dashboard">
       <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
@@ -23,7 +31,7 @@ export default function Dashboard() {
         <h5>New Course
           <button className="btn btn-primary float-end"
             id="wd-add-new-course-click"
-            onClick={() => dispatch(addCourse(course))} > Add </button>
+            onClick={addCourseHandler} > Add </button>
           <button className="btn btn-warning float-end me-2"
             onClick={() => dispatch(updateCourse(course))} id="wd-update-course-click">
             Update

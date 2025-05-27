@@ -126,8 +126,7 @@ export default function AssignmentEditor() {
               <Form.Select value={assignment.submissionType || "ONLINE"} className="mb-2"
                 onChange={(e) => {
                   setAssignment({ ...assignment, submissionType: e.target.value });
-                }}
-              >
+                }}>
                 <option value="ONLINE">Online</option>
                 <option value="PERSON">In Person</option>
               </Form.Select>
