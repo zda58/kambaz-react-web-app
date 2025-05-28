@@ -54,7 +54,7 @@ export default function Dashboard() {
         </h2>
         <button className="btn btn-primary float-end me-2"
           onClick={() => setShowAll(!showAll)} id="wd-update-enrollment-click">
-          Enrollments
+          {showAll ? "My courses" : "All Courses"}
         </button>
       </div>
       <hr />
