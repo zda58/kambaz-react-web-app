@@ -15,7 +15,9 @@ export default function Signup() {
     }
     const signUpUser = { ...user,
       firstName:user.firstName || user.username,
-      lastName: user.lastName || "User" };
+      lastName: user.lastName || "User",
+      role: "STUDENT"
+    };
     const currentUser = await client.signup(signUpUser);
     dispatch(setCurrentUser(currentUser));
     navigate("/Kambaz/Account/Profile");
