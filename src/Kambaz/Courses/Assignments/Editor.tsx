@@ -116,7 +116,7 @@ export default function AssignmentEditor() {
               <Form.Select value={assignment.group || "ASSIGNMENTS"}
                 onChange={(e) => setAssignment({ ...assignment, group: e.target.value })}>
                 <option value="ASSIGNMENTS">Assignments</option>
-                <option value="QUIZES">Quizzes</option>
+                <option value="QUIZZES">Quizzes</option>
               </Form.Select>
             </Form.Group>
           </Col>
