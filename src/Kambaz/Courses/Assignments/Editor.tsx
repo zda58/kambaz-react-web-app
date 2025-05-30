@@ -73,9 +73,8 @@ export default function AssignmentEditor() {
       alert("Assignment should have a title");
       return;
     }
-    const updatedAssignment =
-      await assignmentsClient.updateAssignment(assignment);
-    dispatch(updateAssignment(updatedAssignment));
+    await assignmentsClient.updateAssignment(assignment);
+    dispatch(updateAssignment(assignment));
     navigator(`/Kambaz/Courses/${cid}/Assignments`);
   }
 
